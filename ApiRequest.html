@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1>Rohit Varfa</H1>
+    <button id="btn">get info</button>
+    <label for="">followes:</label><span id="follow"></span>
+    <span id="imag"></span>
+    
+    
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/Rohitvarfa';
+const xhr = new XMLHttpRequest();
+xhr.open('GET',requestUrl);
+let data;
+let data1;
+xhr.onreadystatechange = function(){
+    console.log(xhr.readyState);
+    if(xhr.readyState===4){
+         data = JSON.parse(this.responseText);
+        console.log(data.followers);
+    }
+    if(xhr.readyState===4){
+        const data1 = JSON.parse(this.responseText);
+        console.log(data1.avatar_url);
+    }
+
+
+}
+xhr.send();
+
+const btn = document.getElementById('btn');
+const follow = document.getElementById('follow');
+const imag = document.getElementById('imag');
+btn.addEventListener('click',function(){
+    follow.innerHTML = `${data.followers}`;
+    const imgaa =data1.avatar_url;
+    const img = imgaa;
+    imag.appendChild(img);
+})
+
+</script>
+</html> 
